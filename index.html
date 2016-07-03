@@ -45,9 +45,9 @@
 
   <div id="position">
     <ul>
-        <li class="completed">Step 1</li>
-        <li class="active">Step 2</li>
-        <li>Step 3</li>
+        <li id="step_1_li" class="active">Step 1</li>
+        <li id="step_2_li">Step 2</li>
+        <li id="step_3_li">Step 3</li>
     </ul>
   </div>
 
@@ -56,12 +56,19 @@
     <div class="col--md-12 col-sm-12 col-xs-12">
       <p>
         Upload Photo
-        <span class="error_message">You need to upload a photo</span>
+        <span class="error_message" id="photo_upload_err">&nbsp;</span>
       </p>
     </div>
 
     <div class="col--md-12 col-sm-12 col-xs-12">
-      <div class="photo_placeholder"></div>
+      <div class="photo_placeholder">
+        <div id="add_photo" onclick="addPhoto()">
+          <span class="icon_plus_alt2"></span>
+          Add Photo
+        </div>
+        <input type="file" onchange="previewFile()" style="display:none;" id="input_file"><br>
+        <img src="" height="170px" alt="" onclick="addPhoto()">
+      </div>
 
       <p>
         <span>
@@ -71,7 +78,7 @@
     </div>
 
     <div class="col--md-12 col-sm-12 col-xs-12 next_button">
-      <button class="btn_full" id="step_1_button">Next</button>
+      <button class="btn_full" id="step_1_button" onclick="goStep2()" disabled>Next</button>
     </div>
 
   </div>
@@ -88,23 +95,23 @@
 
     <div class="col--md-12 col-sm-12 col-xs-12">
       <form>
-        <input name="first_name" id="first_name" type="text" placeholder="Your First Name" class="form-control">
-        <p><span class="error_message" id="first_name_err">This field cannot be empty</span></p>
+        <input id="first_name" type="text" placeholder="Your First Name" class="form-control">
+        <p><span class="error_message" id="first_name_err">&nbsp;</span></p>
 
-        <input name="last_name" id="last_name" type="text" placeholder="Your Last Name" class="form-control">
+        <input id="last_name" type="text" placeholder="Your Last Name" class="form-control">
         <p><span class="error_message" id="last_name_err">&nbsp;</span></p>
 
-        <input name="contact_number" id="contact_number" type="number" value="" placeholder="Contact Number" class="form-control">
-        <p><span class="error_message" id="contact_number_err">This field cannot be empty</span></p>
+        <input id="contact_number" type="number" value="" placeholder="Contact Number" class="form-control">
+        <p><span class="error_message" id="contact_number_err">&nbsp;</span></p>
 
-        <textarea name="address" id="address" placeholder="Address" class="form-control" rows="3" cols="50"></textarea>
-        <p><span class="error_message" id="address_err">This field cannot be empty</span></p>
+        <textarea id="address" placeholder="Address" class="form-control" rows="3" cols="50"></textarea>
+        <p><span class="error_message" id="address_err">&nbsp;</span></p>
 
       </form>
     </div>
 
     <div class="col--md-12 col-sm-12 col-xs-12 next_button">
-      <button class="btn_full" id="step_2_button">Next</button>
+      <button class="btn_full" id="step_2_button" onclick="goStep3()" disabled>Next</button>
     </div>
 
   </div>
@@ -128,9 +135,112 @@
   <!-- SPECIFIC SCRIPTS -->
   <script src="js/video_header.js"></script>
   <script>
-    $(document).ready(function() {
+    function addPhoto() {
+      document.getElementById("input_file").click(); // Click on the checkbox
+    }
 
+    function previewFile() {
+      var preview = document.querySelector('img');
+      var file    = document.querySelector('input[type=file]').files[0];
+
+      if ( /\.(jpe?g|png)$/i.test(file.name) ) {
+        var reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+          preview.src = reader.result;
+          document.getElementById("add_photo").style.display = 'none';
+          document.getElementById("photo_upload_err").innerHTML = "&nbsp;";
+          document.getElementById("step_1_button").disabled = false;
+        }, false);
+
+        reader.readAsDataURL(file);
+      } else {
+        document.getElementById("photo_upload_err").innerHTML = "You need to upload a photo";
+        document.getElementById("add_photo").style.display = 'block';
+        document.getElementById("step_1_button").disabled = true;
+        preview.src ="";
+      }
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function goStep2() {
+      document.getElementById("step_1").style.display = 'none';
+      document.getElementById("step_2").style.display = 'block';
+      document.getElementById("step_1_li").className = "completed";
+      document.getElementById("step_2_li").className = "active";
+    }
+  </script>
+
+  <script>
+    document.getElementById("first_name").addEventListener("change", validateFirstName);
+
+    function validateFirstName() {
+        var x = document.getElementById("first_name").value;
+        if (!x.match(/\S/)) {
+          document.getElementById("first_name_err").innerHTML = "This field cannot be empty";
+          document.getElementById("step_2_button").disabled = true;
+        } else {
+          document.getElementById("first_name_err").innerHTML = "&nbsp;";
+        }
+    }
+
+    document.getElementById("last_name").addEventListener("change", validateLastName);
+
+    function validateLastName() {
+        var x = document.getElementById("last_name").value;
+        if (!x.match(/\S/)) {
+          document.getElementById("last_name_err").innerHTML = "This field cannot be empty";
+          document.getElementById("step_2_button").disabled = true;
+        } else {
+          document.getElementById("last_name_err").innerHTML = "&nbsp;";
+        }
+    }
+
+    document.getElementById("contact_number").addEventListener("change", validateContactNumber);
+
+    function validateContactNumber() {
+        var x = document.getElementById("contact_number").value;
+        if (!x.match(/\S/)) {
+          document.getElementById("contact_number_err").innerHTML = "This field cannot be empty";
+          document.getElementById("step_2_button").disabled = true;
+        } else {
+          document.getElementById("contact_number_err").innerHTML = "&nbsp;";
+        }
+    }
+
+    document.getElementById("address").addEventListener("change", validateAddress);
+
+    function validateAddress() {
+        var x = document.getElementById("address").value;
+        if (!x.match(/\S/)) {
+          document.getElementById("address_err").innerHTML = "This field cannot be empty";
+          document.getElementById("step_2_button").disabled = true;
+        } else {
+          document.getElementById("address_err").innerHTML = "&nbsp;";
+        }
+    }
+
+    $(document).ready(function() {
+      $("form > :input").keyup(function() {
+          var $emptyFields = $('form :input').filter(function() {
+              return $.trim(this.value) === "";
+          });
+
+          if (!$emptyFields.length) {
+              $('#step_2_button').prop("disabled", false);
+          }
+      });
     });
+
+    function goStep3() {
+      document.getElementById("step_2").style.display = 'none';
+      document.getElementById("step_3").style.display = 'block';
+      document.getElementById("step_3_li").className = "completed";
+      document.getElementById("step_2_li").className = "completed";
+    }
   </script>
 
 </body>
