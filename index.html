@@ -36,70 +36,90 @@
   <!-- Header ================================================== -->
   <header>
     <div class="container-fluid">
-      <div class="row">
-        <div class="col--md-3 col-sm-3 col-xs-3">
-          &nbsp;
-        </div>
-
-        <div class="col--md-9 col-sm-9 col-xs-9">
-          &nbsp;
-        </div>
-      </div><!-- End row -->
+      <div class="col--md-11 col-sm-11 col-xs-11">
+        &nbsp;
+      </div>
     </div><!-- End container -->
   </header>
   <!-- End Header =============================================== -->
 
   <div id="position">
-    <div class="container">
-      <ul>
-          <li>Step 1</li>
-          <li>Step 2</li>
-          <li>Step 3</li>
-      </ul>
-    </div>
+    <ul>
+        <li class="completed">Step 1</li>
+        <li class="active">Step 2</li>
+        <li>Step 3</li>
+    </ul>
   </div>
 
   <!-- Content ================================================== -->
-  <div class="container margin_60">
-    <div class="col-md-12">
-      <div class="main_title" style="margin-bottom: 20px">
-        <h2 class="nomargin_top" style="padding-bottom: 40px"> Lorem Ipsum </h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-
-      </div>
+  <div id="step_1">
+    <div class="col--md-12 col-sm-12 col-xs-12">
+      <p>
+        Upload Photo
+        <span class="error_message">You need to upload a photo</span>
+      </p>
     </div>
 
-    <div class="col-md-12" style="margin-bottom: 20px">
-      <img src="img/sub_header_1.jpg" alt="" class="img-responsive"/>
+    <div class="col--md-12 col-sm-12 col-xs-12">
+      <div class="photo_placeholder"></div>
+
+      <p>
+        <span>
+          Please upload any photo here.
+        </span>
+      </p>
     </div>
 
-    <div class="col-md-12" style="margin-bottom: 40px">
-      <div class="col-md-8 col-md-offset-2" style="text-align: center; margin-bottom: 15px">
-        <button class="btn_full" id="references">Just a Button</button>
-      </div>
+    <div class="col--md-12 col-sm-12 col-xs-12 next_button">
+      <button class="btn_full" id="step_1_button">Next</button>
     </div>
+
+  </div>
+
+  <div id="step_2">
+    <div class="col--md-12 col-sm-12 col-xs-12">
+      <p>
+        Your Contact Information
+        <span>
+          Fill in the following details
+        </span>
+      </p>
+    </div>
+
+    <div class="col--md-12 col-sm-12 col-xs-12">
+      <form>
+        <input name="first_name" id="first_name" type="text" placeholder="Your First Name" class="form-control">
+        <p><span class="error_message" id="first_name_err">This field cannot be empty</span></p>
+
+        <input name="last_name" id="last_name" type="text" placeholder="Your Last Name" class="form-control">
+        <p><span class="error_message" id="last_name_err">&nbsp;</span></p>
+
+        <input name="contact_number" id="contact_number" type="number" value="" placeholder="Contact Number" class="form-control">
+        <p><span class="error_message" id="contact_number_err">This field cannot be empty</span></p>
+
+        <textarea name="address" id="address" placeholder="Address" class="form-control" rows="3" cols="50"></textarea>
+        <p><span class="error_message" id="address_err">This field cannot be empty</span></p>
+
+      </form>
+    </div>
+
+    <div class="col--md-12 col-sm-12 col-xs-12 next_button">
+      <button class="btn_full" id="step_2_button">Next</button>
+    </div>
+
+  </div>
+
+  <div id="step_3">
+
+    <div class="col--md-12 col-sm-12 col-xs-12">
+      <p id="complete_message">
+        Complete.
+      </p>
+    </div>
+
   </div>
   <!-- End Content =============================================== -->
 
-
-  <!-- Footer ================================================== -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <p style="text-align: center">Binh Nguyen</p>
-          <div id="social_footer">
-            <p>
-                © 2016 Nguyen Thanh Binh - Simple Form
-            </p>
-          </div>
-        </div>
-      </div><!-- End row -->
-    </div><!-- End container -->
-  </footer>
-  <!-- End Footer =============================================== -->
 
   <!-- COMMON SCRIPTS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
