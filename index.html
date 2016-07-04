@@ -43,7 +43,10 @@
   </header>
   <!-- End Header =============================================== -->
 
-  <div id="position">
+  <div class="hidden-xs" style="height:4em"></div>
+
+  <!-- Content ================================================== -->
+  <div id="position" class="col-xs-12 col-sm-8 col-sm-offset-2 col-lg-4 col-lg-offset-4">
     <ul>
         <li id="step_1_li" class="active">Step 1</li>
         <li id="step_2_li">Step 2</li>
@@ -51,16 +54,15 @@
     </ul>
   </div>
 
-  <!-- Content ================================================== -->
   <div id="step_1">
-    <div class="col--md-12 col-sm-12 col-xs-12">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-lg-4 col-lg-offset-4">
       <p>
         Upload Photo
         <span class="error_message" id="photo_upload_err"></span>
       </p>
     </div>
 
-    <div class="col--md-12 col-sm-12 col-xs-12">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-lg-4 col-lg-offset-4">
       <div class="photo_placeholder">
         <div id="add_photo" onclick="addPhoto()">
           <span class="icon_plus_alt2"></span>
@@ -77,14 +79,14 @@
       </p>
     </div>
 
-    <div class="col--md-12 col-sm-12 col-xs-12 next_button">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-lg-4 col-lg-offset-4 next_button">
       <button class="btn_full" id="step_1_button" onclick="goStep2()" disabled>Next</button>
     </div>
 
   </div>
 
   <div id="step_2">
-    <div class="col--md-12 col-sm-12 col-xs-12">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-lg-4 col-lg-offset-4">
       <p>
         Your Contact Information
         <span>
@@ -93,24 +95,40 @@
       </p>
     </div>
 
-    <div class="col--md-12 col-sm-12 col-xs-12">
-      <form>
-        <input id="first_name" type="text" placeholder="Your First Name" class="form-control">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-lg-4 col-lg-offset-4">
+      <form autocomplete="off">
+        <fieldset>
+          <input id="first_name" name="first_name" type="text" required/>
+          <label for="first_name">Your First Name</label>
+        </fieldset>
+
         <p><span class="error_message" id="first_name_err">&nbsp;</span></p>
 
-        <input id="last_name" type="text" placeholder="Your Last Name" class="form-control">
+        <fieldset>
+          <input id="last_name" name="last_name" type="text" required />
+          <label for="last_name">Your Last Name</label>
+        </fieldset>
+
         <p><span class="error_message" id="last_name_err">&nbsp;</span></p>
 
-        <input id="contact_number" type="number" value="" placeholder="Contact Number" class="form-control">
+        <fieldset>
+          <input id="contact_number" name="contact_number" type="number" required/>
+          <label for="contact_number">Contact Number</label>
+        </fieldset>
+
         <p><span class="error_message" id="contact_number_err">&nbsp;</span></p>
 
-        <textarea id="address" placeholder="Address" class="form-control" rows="3" cols="50"></textarea>
+        <fieldset>
+          <textarea id="address" name="address" rows="3" required></textarea>
+          <label for="address">Address</label>
+        </fieldset>
+
         <p><span class="error_message" id="address_err">&nbsp;</span></p>
 
       </form>
     </div>
 
-    <div class="col--md-12 col-sm-12 col-xs-12 next_button">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-lg-4 col-lg-offset-4 next_button">
       <button class="btn_full" id="step_2_button" onclick="goStep3()" disabled>Next</button>
     </div>
 
@@ -118,7 +136,7 @@
 
   <div id="step_3">
 
-    <div class="col--md-12 col-sm-12 col-xs-12">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-lg-4 col-lg-offset-4">
       <p id="complete_message" class="animated zoomIn">
         Complete.
       </p>
@@ -131,129 +149,6 @@
   <!-- COMMON SCRIPTS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="js/functions.js"></script>
-
-  <!-- SPECIFIC SCRIPTS -->
-  <script>
-    function addPhoto() {
-      document.getElementById("input_file").click();
-    }
-
-    function previewFile() {
-      var preview = document.querySelector('img');
-      var file    = document.querySelector('input[type=file]').files[0];
-
-      if (file) {
-        document.getElementById("add_photo").style.display = 'none';
-
-        if ( /\.(jpe?g|png)$/i.test(file.name) ) {
-          var reader = new FileReader();
-          reader.readAsDataURL(file);
-
-          /*reader.onloadstart = function() {
-            preview.src = "img/loading.gif";
-          }*/
-
-          reader.onload = function() {
-            preview.src = reader.result;
-            document.getElementById("add_photo").style.display = 'none';
-            document.getElementById("photo_upload_err").innerHTML = "";
-            document.getElementById("step_1_button").disabled = false;
-          }
-
-        } else {
-          document.getElementById("photo_upload_err").innerHTML = "You need to upload a photo";
-          document.getElementById("add_photo").style.display = 'block';
-          document.getElementById("step_1_button").disabled = true;
-          preview.src ="";
-        }
-
-        //reader.readAsDataURL(file);
-      }
-    }
-
-    document.getElementById("input_file").addEventListener("click", showLoading);
-
-    function showLoading() {
-      document.getElementById("add_photo").style.display = 'none';
-      document.querySelector('img').src = "img/loading.gif";
-    }
-
-    function goStep2() {
-      document.getElementById("step_1").style.display = 'none';
-      document.getElementById("step_2").style.display = 'block';
-      document.getElementById("step_1_li").className = "completed";
-      document.getElementById("step_2_li").className = "active";
-    }
-  </script>
-
-  <script>
-    document.getElementById("first_name").addEventListener("change", validateFirstName);
-
-    function validateFirstName() {
-        var x = document.getElementById("first_name").value;
-        if (!x.match(/\S/)) {
-          document.getElementById("first_name_err").innerHTML = "This field cannot be empty";
-          document.getElementById("step_2_button").disabled = true;
-        } else {
-          document.getElementById("first_name_err").innerHTML = "&nbsp;";
-        }
-    }
-
-    document.getElementById("last_name").addEventListener("change", validateLastName);
-
-    function validateLastName() {
-        var x = document.getElementById("last_name").value;
-        if (!x.match(/\S/)) {
-          document.getElementById("last_name_err").innerHTML = "This field cannot be empty";
-          document.getElementById("step_2_button").disabled = true;
-        } else {
-          document.getElementById("last_name_err").innerHTML = "&nbsp;";
-        }
-    }
-
-    document.getElementById("contact_number").addEventListener("change", validateContactNumber);
-
-    function validateContactNumber() {
-        var x = document.getElementById("contact_number").value;
-        if (!x.match(/\S/)) {
-          document.getElementById("contact_number_err").innerHTML = "This field cannot be empty";
-          document.getElementById("step_2_button").disabled = true;
-        } else {
-          document.getElementById("contact_number_err").innerHTML = "&nbsp;";
-        }
-    }
-
-    document.getElementById("address").addEventListener("change", validateAddress);
-
-    function validateAddress() {
-        var x = document.getElementById("address").value;
-        if (!x.match(/\S/)) {
-          document.getElementById("address_err").innerHTML = "This field cannot be empty";
-          document.getElementById("step_2_button").disabled = true;
-        } else {
-          document.getElementById("address_err").innerHTML = "&nbsp;";
-        }
-    }
-
-    $(document).ready(function() {
-      $("form > :input").keyup(function() {
-          var $emptyFields = $('form :input').filter(function() {
-              return $.trim(this.value) === "";
-          });
-
-          if (!$emptyFields.length) {
-              $('#step_2_button').prop("disabled", false);
-          }
-      });
-    });
-
-    function goStep3() {
-      document.getElementById("step_2").style.display = 'none';
-      document.getElementById("step_3").style.display = 'block';
-      document.getElementById("step_3_li").className = "completed";
-      document.getElementById("step_2_li").className = "completed";
-    }
-  </script>
 
 </body>
 </html>
