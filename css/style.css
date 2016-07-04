@@ -12,7 +12,7 @@ html * {
 	-moz-osx-font-smoothing: grayscale;
 }
 body {
-	font-size: 18px;
+	font-size: 16px;
   line-height: 1.4;
   color: #363A45;
   background-color: #F7F9FB;
@@ -44,7 +44,7 @@ hr.styled {
   cursor: pointer;
   padding: 15px 20px;
   outline: none;
-  font-size: 15px;
+  font-size: 14px;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
@@ -56,6 +56,7 @@ hr.styled {
   display: block;
   text-align: center;
   margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 button[disabled] {
@@ -68,7 +69,7 @@ button[disabled] {
 header{
 	width: 100%;
 	position: initial;
-	padding: 16px 0;
+	padding: 15px 0;
 	top: 0;
 	left: 0;
 	z-index: 99999;
@@ -85,16 +86,16 @@ header{
 /* 2.  CONTENT  */
 
 .col--md-12, .col-sm-12, .col-xs-12 {
-	padding: 15px 10px 0;
+	padding: 15px 10px 5px;
 }
 
 #step_1, #step_2, #step_3 {
 	padding: 0;
 	position: relative;
-	min-height: 530px;
+	min-height: 480px;
 }
 
-#step_2, #step_3 {
+#step_1, #step_3 {
 	display:none;
 }
 
@@ -105,7 +106,7 @@ header{
 
 p span, p span, p span {
 	display:block;
-	font-size: 16px;
+	font-size: 14px;
 	color: #565D6B;
 }
 
@@ -118,22 +119,24 @@ p span, p span, p span {
 .photo_placeholder {
 	border: 1px solid #CCD6DD;
 	width: 100%;
-	height: 170px;
+	height: 150px;
 	background-color: #eaeff2;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: 10px;
 }
 
 #add_photo {
-	font-size: 16px;
+	font-size: 14px;
 	color: #00B140;
 	text-align: center;
 }
 
 #add_photo span{
 	display: block;
-  font-size: 36px;
+  font-size: 32px;
+	line-height: 1.1;
 }
 
 #complete_message{
@@ -148,9 +151,9 @@ p span, p span, p span {
 /* 3.1 Position  breadcrumbs */
 #position {
 	background-color: #fff;
-  padding: 13px 0;
-  font-size: 16px;
-  text-align: center;
+	padding: 11px 0;
+	font-size: 14px;
+	text-align: center;
 }
 #position ul li:first-child:before{
 	font-style: normal;
@@ -173,7 +176,7 @@ p span, p span, p span {
 }
 #position ul li{
 	display:inline-block;
-	width:31%;
+	width:30%;
 	position:relative;
 }
 #position ul li:after{
@@ -197,11 +200,22 @@ p span, p span, p span {
 }
 .form-control {
 	color: #333;
-  height: 50px;
-  border-radius: 2px;
+  height: 42px;
+  border-radius: 1px;
   box-shadow: none;
   border: 1px solid #CCD6DD;
   background: #eaeff2;
-  margin-top: 10px;
-	font-size: 18px;
+  margin-top: 7px;
+	font-size: 16px;
+	line-height: 1.5;
+	padding: 1px 6px 5px 6px;
+
+}
+
+input:placeholder-shown {
+  border: 1px solid red;
+}
+
+input::placeholder {
+  color: blue;
 }
