@@ -16,14 +16,12 @@ body {
   line-height: 1.4;
   color: #363A45;
   background-color: #F7F9FB;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Sanomat Grab Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
   height: 100%;
-  font-weight: 500;
+	font-weight: 500;
 }
 h1, h2, h3, h4, h5, h6, label {color:#333;}
-h1, h2 {
-	font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+
 
 /*General links color*/
 a {color:#363A45;text-decoration: none;-webkit-transition: all 0.2s ease;transition: all 0.2s ease; outline:none;}
@@ -52,7 +50,7 @@ hr.styled {
   -moz-border-radius: 3px;
   border-radius: 3px;
   text-transform: uppercase;
-  font-weight: bold;
+  /*font-weight: bold;*/
   display: block;
   text-align: center;
   margin-bottom: 5px;
@@ -157,7 +155,7 @@ p span, p span, p span {
 }
 #position ul li:first-child:before{
 	font-style: normal;
-	font-weight: normal;
+	/*font-weight: normal;*/
 	position:absolute;
 	left:0;
 	top:1px;
@@ -182,7 +180,7 @@ p span, p span, p span {
 #position ul li:after{
 	content:"\e046";
 	font-style: normal;
-	font-weight: normal;
+	/*font-weight: normal;*/
 	font-family: 'ElegantIcons';
 	position:absolute;
 	right:0;
